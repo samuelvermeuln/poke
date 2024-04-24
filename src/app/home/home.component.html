@@ -1,2 +1,9 @@
-<p>home works!</p>
-<img src="src/assets/teste.img" alt="logo" />
+<app-menu></app-menu>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <app-pokemon-list (pokemonSelected)="selectedPokemon = $event"></app-pokemon-list>
+    </div>
+  </div>
+</div>

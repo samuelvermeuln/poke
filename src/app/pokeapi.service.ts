@@ -18,9 +18,9 @@ export class PokeapiService {
     }
   }
 
-  async getPokemonDetails(url: string) {
+  async getPokemonDetails(id: string) {
     try {
-      const response = await axios.get(url);
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon/'+ id);
       return response.data;
     } catch (error) {
       console.error('Error fetching Pokemon details:', error);

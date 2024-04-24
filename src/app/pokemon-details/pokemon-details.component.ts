@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokeapiService } from '../pokeapi.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -11,9 +12,15 @@ export class PokemonDetailsComponent implements OnInit {
   pokemonDetails: any;
   totalStats: number = 0;
 
-  constructor(private pokeapiService: PokeapiService) { }
+  constructor(
+    private pokeapiService: PokeapiService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   async ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.pokemonUrl = params.get('pokemonUrl') as string;
+    })
     if (this.pokemonUrl) {
       this.pokemonDetails = await this.pokeapiService.getPokemonDetails(this.pokemonUrl);
       this.calculateTotalStats();
